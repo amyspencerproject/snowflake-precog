@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text.css" href="./scss/_normalize.css" />
+    <link rel="stylesheet" href="./scss/main.css" />
+    <link rel="stylesheet" href="./scss/_fonts.css" />
+    <link rel="stylesheet" href="./scss/_fontawesome-all.css" />
+  </head>
+  <body>
+    <div class="Precog">
+      <div class="Page">
+        <div class="PipelineCreatePage">
+          <div class="Container"><h1>Connect to Snowflake</h1></div>
+          <div class="Container">
+            <div class="SourceAdd">
+              <div class="Group">
+                <button class="Button" type="button">
+                  <i class="Icon fas fa-arrow-left"></i>Back
+                </button>
+              </div>
+              <div class="ConnectorForm">
+                <div class="Instructions">
+                  <h2>Snowflake setup</h2>
+                  <ol class="InstructionList">
+                    <li class="InstructionList-item">
+                      Log into Snowflake at
+                      <a href="https://app.snowflake.com" target="_blank"
+                        >https://app.snowflake.com</a
+                      >.
+                    </li>
+                    <li class="InstructionList-item">
+                      Select <strong>“Classic Console”</strong> from the menu on
+                      the left.
+                    </li>
+
+                    <li class="InstructionList-item">
+                      You may be asked to sign in again at this point.
+                    </li>
+                    <li class="InstructionList-item">
+                      Select <strong>“Worksheets”</strong> from the toolbar at
+                      the top.
+                    </li>
+                    <li>
+                      <img
+                        style="width: 50%"
+                        src="./img/snowflake-new-worksheet.gif"
+                      />
+                    </li>
+                    <li class="InstructionList-item">
+                      <p>Paste the following into a new worksheet:</p>
+                      <div class="CodeBlock">
+                        <pre class="CodeBlock-code">
+      CREATE OR REPLACE DATABASE precog;
+          CREATE OR REPLACE ROLE precog;
+          CREATE OR REPLACE SCHEMA precog;
+          CREATE WAREHOUSE precog WITH WAREHOUSE_SIZE = 'XSMALL' WAREHOUSE_TYPE = 'STANDARD' AUTO_SUSPEND = 300 AUTO_RESUME = TRUE;
+          GRANT ALL ON WAREHOUSE precog TO ROLE precog;
+          GRANT ALL ON DATABASE precog TO ROLE precog;
+          GRANT ALL ON ALL SCHEMAS IN DATABASE precog TO ROLE precog;
+          CREATE OR REPLACE USER precog PASSWORD = "c9gL8glMfzf3zrVwKjyZgBPD" LOGIN_NAME = precog DISPLAY_NAME = precog MUST_CHANGE_PASSWORD = FALSE DEFAULT_WAREHOUSE = precog;
+          GRANT ROLE precog TO USER precog;
+          ALTER USER precog SET default_role=precog;
+          GRANT USAGE ON ALL SCHEMAS IN DATABASE precog TO ROLE precog;
+          GRANT USAGE ON FUTURE SCHEMAS IN DATABASE precog TO ROLE precog;
+          GRANT ROLE precog TO ROLE sysadmin;</pre
+                        >
+                        <button
+                          class="Button CodeBlock-copyButton"
+                          type="button"
+                        >
+                          <i class="Icon fas fa-clipboard"></i>Copy
+                        </button>
+                      </div>
+                    </li>
+                    <li class="InstructionList-item">
+                      Enable the <strong>“All queries”</strong> checkbox.
+                    </li>
+                    <li class="InstructionList-item">
+                      Click <strong>“Run”</strong>.
+                    </li>
+                    <li>
+                      <img
+                        style="width: 50%"
+                        src="./img/snowflake-runall.gif"
+                      />
+                    </li>
+                    <li class="InstructionList-item">
+                      You should now have a database, warehouse, and user named
+                      <code>precog</code> with the password
+                      <code>c9gL8glMfzf3zrVwKjyZgBPD</code>.
+                    </li>
+                  </ol>
+                </div>
+                <h2>Precog configuration</h2>
+                <div class="KindForm">
+                  <label class="Field"
+                    ><div class="Field-label">Account</div>
+                    <div class="Field-description">
+                      The name preceding '.snowflakecomputing.com'
+                    </div>
+                    <input class="Input" type="text" placeholder="" /></label
+                  ><label class="Field"
+                    ><div class="Field-label">User</div>
+                    <input class="Input" type="text" placeholder="" /></label
+                  ><label class="Field"
+                    ><div class="Field-label">Password</div>
+                    <div class="Field-description">
+                      Password. Can be left empty if key pair authentication is
+                      used.
+                    </div>
+                    <input
+                      class="Input"
+                      type="password"
+                      placeholder="" /></label
+                  ><label class="Field"
+                    ><div class="Field-label">Role</div>
+                    <div class="Field-description">
+                      Role (if blank default role for user used)
+                    </div>
+                    <input class="Input" type="text" placeholder="" /></label
+                  ><label class="Field"
+                    ><div class="Field-label">Private key</div>
+                    <div class="Field-description">
+                      Private key in case key pair authentication is set up for
+                      the user, as described in
+                      https://docs.snowflake.com/en/user-guide/key-pair-auth.html.
+                      If there is an issue please refer to
+                      https://community.snowflake.com/s/article/Private-key-provided-is-invalid-or-not-supported-rsa-key-p8--data-isn-t-an-object-ID
+                      in order to resolve. Leave empty if basic,
+                      username/password-based authentication is used.
+                    </div>
+                    <label class="Upload"
+                      ><input type="file" class="Upload-file" />
+                      <div class="Button Upload-fileName">
+                        <span class="Upload-fileNameIcon"
+                          ><i class="Icon fas fa-upload"></i></span
+                        >Select file
+                      </div></label
+                    ></label
+                  ><label class="Field"
+                    ><div class="Field-label">Private key passphrase</div>
+                    <div class="Field-description">
+                      Passphrase for private key in case the private key is
+                      encrypted. Leave empty if private key is unencrypted or if
+                      basic, username/password-based authentication is used.
+                    </div>
+                    <input
+                      class="Input"
+                      type="password"
+                      placeholder="" /></label
+                  ><label class="Field"
+                    ><div class="Field-label">Database</div>
+                    <input class="Input" type="text" placeholder="" /></label
+                  ><label class="Field"
+                    ><div class="Field-label">Warehouse</div>
+                    <input class="Input" type="text" placeholder=""
+                  /></label>
+                </div>
+                <div class="Group">
+                  <div class="ButtonGroup">
+                    <button class="Button" type="button">
+                      <i class="Icon fas fa-plus"></i>Create destination
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
