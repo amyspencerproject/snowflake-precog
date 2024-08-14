@@ -1,0 +1,172 @@
+<div class="Page">
+  <div class="PipelineCreatePage">
+    <div class="Container"><h1>Connect to Snowflake</h1></div>
+    <div class="Container">
+      <div class="SourceAdd">
+        <div class="Group">
+          <button class="Button" type="button">
+            <i class="Icon fas fa-arrow-left"></i>Back
+          </button>
+        </div>
+        <div class="ConnectorForm">
+          <div class="Instructions">
+            <h2>Snowflake setup</h2>
+            <ol class="InstructionList">
+              <li class="InstructionList-item">
+                Log into your Snowflake account.
+              </li>
+              <li class="InstructionList-item">
+                <p>
+                  Create a new SQL Worksheet. Select
+                  <strong>“Worksheets”</strong> from the left-hand navigation
+                  bar and create a new worksheet with the blue plus icon on the
+                  top right.
+                </p>
+                <img
+                  class="InstructionsImage"
+                  src="img/snowflake/new-worksheet.gif"
+                />
+                <p>
+                  If you are using the Classic Console view then select
+                  <strong>“Worksheets”</strong> from the toolbar at the top and
+                  create a new worksheet.
+                </p>
+              </li>
+              <li class="InstructionList-item">
+                <p>
+                  Paste the following SQL statements into the new worksheet. A
+                  unique and secure password has been generated in the 8th
+                  statement. This password is automatically filled into the
+                  password field below for your convenience.
+                </p>
+                <div class="CodeBlock">
+                  <pre class="CodeBlock-code">
+CREATE OR REPLACE DATABASE precog;
+    CREATE OR REPLACE ROLE precog;
+    CREATE OR REPLACE SCHEMA precog;
+    CREATE WAREHOUSE precog WITH WAREHOUSE_SIZE = 'XSMALL' WAREHOUSE_TYPE = 'STANDARD' AUTO_SUSPEND = 300 AUTO_RESUME = TRUE;
+    GRANT ALL ON WAREHOUSE precog TO ROLE precog;
+    GRANT ALL ON DATABASE precog TO ROLE precog;
+    GRANT ALL ON ALL SCHEMAS IN DATABASE precog TO ROLE precog;
+    CREATE OR REPLACE USER precog PASSWORD = "LKBJYrG6fLgc3GC93lqBKlq8" LOGIN_NAME = precog DISPLAY_NAME = precog MUST_CHANGE_PASSWORD = FALSE DEFAULT_WAREHOUSE = precog;
+    GRANT ROLE precog TO USER precog;
+    ALTER USER precog SET default_role=precog;
+    GRANT USAGE ON ALL SCHEMAS IN DATABASE precog TO ROLE precog;
+    GRANT USAGE ON FUTURE SCHEMAS IN DATABASE precog TO ROLE precog;
+    GRANT ROLE precog TO ROLE sysadmin;</pre
+                  >
+                  <button class="Button CodeBlock-copyButton" type="button">
+                    <i class="Icon fas fa-clipboard"></i>Copy
+                  </button>
+                </div>
+              </li>
+              <li class="InstructionList-item">
+                <p>Click on the Run All blue (down arrow) icon on top right.</p>
+                <img
+                  class="InstructionsImage"
+                  src="img/snowflake/run-all.gif"
+                />
+                <p>
+                  If you are using the Classic Console the above directions will
+                  be slightly different. You will enable the
+                  <strong>“All queries”</strong> checkbox and click
+                  <strong>“Run”</strong>.
+                </p>
+              </li>
+              <li class="InstructionList-item">
+                You should now have a <strong>database</strong>,
+                <strong>warehouse</strong>, and <strong>user</strong> named
+                <code>precog</code> with the <strong>password</strong>
+                <code>LKBJYrG6fLgc3GC93lqBKlq8</code>.
+              </li>
+              <li class="InstructionList-item">
+                <p>
+                  Your <strong>account identifier</strong> is located within
+                  your Snowflake account URL. Click on the account info dropdown
+                  in the bottom left corner, next to the Snowflake Icon. Roll
+                  your mouse over the account location and copy your account URL
+                  by clicking on the link icon at the top of the dialogue box.
+                  Paste the URL and remove the <code>https://</code> and
+                  <code>.snowflakecomputing.com</code> portions of the URL. For
+                  example, in the url of
+                  <code>https://wib42113.snowflakecomputing.com</code> the
+                  account identifier is <code>wib42133</code>.
+                </p>
+                <img class="InstructionsImage" src="img/snowflake/url.gif" />
+              </li>
+            </ol>
+          </div>
+          <h2>Precog configuration</h2>
+          <div class="KindForm">
+            <label class="Field"
+              ><div class="Field-label">Account</div>
+              <div class="Field-description">
+                <p>The account identifier as described above.</p>
+              </div>
+              <input class="Input" type="text" placeholder="" /></label
+            ><label class="Field"
+              ><div class="Field-label">Database</div>
+              <input class="Input" type="text" placeholder="" /></label
+            ><label class="Field"
+              ><div class="Field-label">Warehouse</div>
+              <input class="Input" type="text" placeholder="" /></label
+            ><label class="Field"
+              ><div class="Field-label">User</div>
+              <input class="Input" type="text" placeholder="" /></label
+            ><label class="Field"
+              ><div class="Field-label">Role</div>
+              <div class="Field-description">
+                <p>If left empty the default role for the user will be used.</p>
+              </div>
+              <input class="Input" type="text" placeholder="" /></label
+            ><label class="Field"
+              ><div class="Field-label">Password</div>
+              <div class="Field-description">
+                <p>Can be left empty if key pair authentication is used.</p>
+              </div>
+              <input class="Input" type="password" placeholder="" /></label
+            ><label class="Field"
+              ><div class="Field-label">Private key</div>
+              <div class="Field-description">
+                <p>
+                  Private key in case key pair authentication is set up for the
+                  user, as described in
+                  https://docs.snowflake.com/en/user-guide/key-pair-auth.html.
+                  If there is an issue please refer to
+                  https://community.snowflake.com/s/article/Private-key-provided-is-invalid-or-not-supported-rsa-key-p8--data-isn-t-an-object-ID
+                  in order to resolve. Leave empty if basic,
+                  username/password-based authentication is used.
+                </p>
+              </div>
+              <label class="Upload"
+                ><input type="file" class="Upload-file" />
+                <div class="Button Upload-fileName">
+                  <span class="Upload-fileNameIcon"
+                    ><i class="Icon fas fa-upload"></i></span
+                  >Select file
+                </div></label
+              ></label
+            ><label class="Field"
+              ><div class="Field-label">Private key passphrase</div>
+              <div class="Field-description">
+                <p>
+                  Passphrase for private key in case the private key is
+                  encrypted. Leave empty if private key is unencrypted or if
+                  basic, username/password-based authentication is used.
+                </p>
+              </div>
+              <input class="Input" type="password" placeholder=""
+            /></label>
+          </div>
+          <div class="Group">
+            <div class="ButtonGroup">
+              <button class="Button" type="button">
+                <i class="Icon fas fa-plus"></i>Create destination
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

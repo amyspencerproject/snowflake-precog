@@ -145,7 +145,8 @@ textarea {
  * 1. Show the overflow in Edge.
  */
 button,
-input { /* 1 */
+input {
+  /* 1 */
   overflow: visible;
 }
 
@@ -154,7 +155,8 @@ input { /* 1 */
  * 1. Remove the inheritance of text transform in Firefox.
  */
 button,
-select { /* 1 */
+select {
+  /* 1 */
   text-transform: none;
 }
 
@@ -162,9 +164,9 @@ select { /* 1 */
  * Correct the inability to style clickable types in iOS and Safari.
  */
 button,
-[type=button],
-[type=reset],
-[type=submit] {
+[type="button"],
+[type="reset"],
+[type="submit"] {
   -webkit-appearance: button;
 }
 
@@ -172,9 +174,9 @@ button,
  * Remove the inner border and padding in Firefox.
  */
 button::-moz-focus-inner,
-[type=button]::-moz-focus-inner,
-[type=reset]::-moz-focus-inner,
-[type=submit]::-moz-focus-inner {
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
   border-style: none;
   padding: 0;
 }
@@ -183,9 +185,9 @@ button::-moz-focus-inner,
  * Restore the focus styles unset by the previous rule.
  */
 button:-moz-focusring,
-[type=button]:-moz-focusring,
-[type=reset]:-moz-focusring,
-[type=submit]:-moz-focusring {
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
   outline: 1px dotted ButtonText;
 }
 
@@ -229,8 +231,8 @@ textarea {
  * 1. Add the correct box sizing in IE 10.
  * 2. Remove the padding in IE 10.
  */
-[type=checkbox],
-[type=radio] {
+[type="checkbox"],
+[type="radio"] {
   box-sizing: border-box; /* 1 */
   padding: 0; /* 2 */
 }
@@ -238,8 +240,8 @@ textarea {
 /**
  * Correct the cursor style of increment and decrement buttons in Chrome.
  */
-[type=number]::-webkit-inner-spin-button,
-[type=number]::-webkit-outer-spin-button {
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
   height: auto;
 }
 
@@ -247,7 +249,7 @@ textarea {
  * 1. Correct the odd appearance in Chrome and Safari.
  * 2. Correct the outline style in Safari.
  */
-[type=search] {
+[type="search"] {
   -webkit-appearance: textfield; /* 1 */
   outline-offset: -2px; /* 2 */
 }
@@ -255,7 +257,7 @@ textarea {
 /**
  * Remove the inner padding in Chrome and Safari on macOS.
  */
-[type=search]::-webkit-search-decoration {
+[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
@@ -304,79 +306,95 @@ template {
   font-family: "Roboto";
   font-style: normal;
   font-weight: 100;
-  src: local("Roboto Thin"), local("Roboto-Thin"), url("fonts/Roboto-Thin.woff2") format("woff2");
+  src: local("Roboto Thin"), local("Roboto-Thin"),
+    url("fonts/Roboto-Thin.woff2") format("woff2");
 }
 @font-face {
   font-family: "Roboto";
   font-style: italic;
   font-weight: 100;
-  src: local("Roboto ThinItalic"), local("Roboto-ThinItalic"), url("fonts/Roboto-ThinItalic.woff2") format("woff2");
+  src: local("Roboto ThinItalic"), local("Roboto-ThinItalic"),
+    url("fonts/Roboto-ThinItalic.woff2") format("woff2");
 }
 @font-face {
   font-family: "Roboto";
   font-style: normal;
   font-weight: 300;
-  src: local("Roboto Light"), local("Roboto-Light"), url("fonts/Roboto-Light.woff2") format("woff2");
+  src: local("Roboto Light"), local("Roboto-Light"),
+    url("fonts/Roboto-Light.woff2") format("woff2");
 }
 @font-face {
   font-family: "Roboto";
   font-style: italic;
   font-weight: 300;
-  src: local("Roboto LightItalic"), local("Roboto-LightItalic"), url("fonts/Roboto-LightItalic.woff2") format("woff2");
+  src: local("Roboto LightItalic"), local("Roboto-LightItalic"),
+    url("fonts/Roboto-LightItalic.woff2") format("woff2");
 }
 @font-face {
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
-  src: local("Roboto Regular"), local("Roboto-Regular"), url("fonts/Roboto-Regular.woff2") format("woff2");
+  src: local("Roboto Regular"), local("Roboto-Regular"),
+    url("fonts/Roboto-Regular.woff2") format("woff2");
 }
 @font-face {
   font-family: "Roboto";
   font-style: italic;
   font-weight: 400;
-  src: local("Roboto Regular Italic"), local("Roboto-RegularItalic"), url("fonts/Roboto-RegularItalic.woff2") format("woff2");
+  src: local("Roboto Regular Italic"), local("Roboto-RegularItalic"),
+    url("fonts/Roboto-RegularItalic.woff2") format("woff2");
 }
 @font-face {
   font-family: "Roboto";
   font-style: normal;
   font-weight: 500;
-  src: local("Roboto Medium"), local("Roboto-Medium"), url("fonts/Roboto-Medium.woff2") format("woff2");
+  src: local("Roboto Medium"), local("Roboto-Medium"),
+    url("fonts/Roboto-Medium.woff2") format("woff2");
 }
 @font-face {
   font-family: "Roboto";
   font-style: italic;
   font-weight: 500;
-  src: local("Roboto Medium Italic"), local("Roboto-MediumItalic"), url("fonts/Roboto-MediumItalic.woff2") format("woff2");
+  src: local("Roboto Medium Italic"), local("Roboto-MediumItalic"),
+    url("fonts/Roboto-MediumItalic.woff2") format("woff2");
 }
 @font-face {
   font-family: "Roboto";
   font-style: normal;
   font-weight: 700;
-  src: local("Roboto Bold"), local("Roboto-Bold"), url("fonts/Roboto-Bold.woff2") format("woff2");
+  src: local("Roboto Bold"), local("Roboto-Bold"),
+    url("fonts/Roboto-Bold.woff2") format("woff2");
 }
 @font-face {
   font-family: "Roboto";
   font-style: italic;
   font-weight: 700;
-  src: local("Roboto Bold Italic"), local("Roboto-BoldItalic"), url("fonts/Roboto-BoldItalic.woff2") format("woff2");
+  src: local("Roboto Bold Italic"), local("Roboto-BoldItalic"),
+    url("fonts/Roboto-BoldItalic.woff2") format("woff2");
 }
 @font-face {
   font-family: "Roboto";
   font-style: normal;
   font-weight: 900;
-  src: local("Roboto Black"), local("Roboto-Black"), url("fonts/Roboto-Black.woff2") format("woff2");
+  src: local("Roboto Black"), local("Roboto-Black"),
+    url("fonts/Roboto-Black.woff2") format("woff2");
 }
 @font-face {
   font-family: "Roboto";
   font-style: italic;
   font-weight: 900;
-  src: local("Roboto Black Italic"), local("Roboto-BlackItalic"), url("fonts/Roboto-BlackItalic.woff2") format("woff2");
+  src: local("Roboto Black Italic"), local("Roboto-BlackItalic"),
+    url("fonts/Roboto-BlackItalic.woff2") format("woff2");
 }
 /*!
  * Font Awesome Free 5.0.13 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
-.fa, .fab, .fal, .far, .fas {
+.fa,
+.fab,
+.fal,
+.far,
+.fas {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   display: inline-block;
@@ -477,11 +495,19 @@ template {
   float: right;
 }
 
-.fa.fa-pull-left, .fab.fa-pull-left, .fal.fa-pull-left, .far.fa-pull-left, .fas.fa-pull-left {
+.fa.fa-pull-left,
+.fab.fa-pull-left,
+.fal.fa-pull-left,
+.far.fa-pull-left,
+.fas.fa-pull-left {
   margin-right: 0.3em;
 }
 
-.fa.fa-pull-right, .fab.fa-pull-right, .fal.fa-pull-right, .far.fa-pull-right, .fas.fa-pull-right {
+.fa.fa-pull-right,
+.fab.fa-pull-right,
+.fal.fa-pull-right,
+.far.fa-pull-right,
+.fas.fa-pull-right {
   margin-left: 0.3em;
 }
 
@@ -525,7 +551,8 @@ template {
   transform: scaleY(-1);
 }
 
-.fa-flip-horizontal.fa-flip-vertical, .fa-flip-vertical {
+.fa-flip-horizontal.fa-flip-vertical,
+.fa-flip-vertical {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)";
 }
 
@@ -533,7 +560,11 @@ template {
   transform: scale(-1);
 }
 
-:root .fa-flip-horizontal, :root .fa-flip-vertical, :root .fa-rotate-90, :root .fa-rotate-180, :root .fa-rotate-270 {
+:root .fa-flip-horizontal,
+:root .fa-flip-vertical,
+:root .fa-rotate-90,
+:root .fa-rotate-180,
+:root .fa-rotate-270 {
   -webkit-filter: none;
   filter: none;
 }
@@ -547,7 +578,8 @@ template {
   width: 2em;
 }
 
-.fa-stack-1x, .fa-stack-2x {
+.fa-stack-1x,
+.fa-stack-2x {
   left: 0;
   position: absolute;
   text-align: center;
@@ -4533,7 +4565,8 @@ template {
   width: 1px;
 }
 
-.sr-only-focusable:active, .sr-only-focusable:focus {
+.sr-only-focusable:active,
+.sr-only-focusable:focus {
   clip: auto;
   height: auto;
   margin: 0;
@@ -4543,39 +4576,54 @@ template {
 }
 
 @font-face {
-  font-family: Font Awesome\ 5 Brands;
+  font-family: Font Awesome\5 Brands;
   font-style: normal;
   font-weight: 400;
   src: url(fonts/fa-brands-400.eot);
-  src: url(fonts/fa-brands-400.eot?#iefix) format("embedded-opentype"), url(fonts/fa-brands-400.woff2) format("woff2"), url(fonts/fa-brands-400.woff) format("woff"), url(fonts/fa-brands-400.ttf) format("truetype"), url(fonts/fa-brands-400.svg#fontawesome) format("svg");
+  src: url(fonts/fa-brands-400.eot?#iefix) format("embedded-opentype"),
+    url(fonts/fa-brands-400.woff2) format("woff2"),
+    url(fonts/fa-brands-400.woff) format("woff"),
+    url(fonts/fa-brands-400.ttf) format("truetype"),
+    url(fonts/fa-brands-400.svg#fontawesome) format("svg");
 }
 .fab {
-  font-family: Font Awesome\ 5 Brands;
+  font-family: Font Awesome\5 Brands;
 }
 
 @font-face {
-  font-family: Font Awesome\ 5 Free;
+  font-family: Font Awesome\5 Free;
   font-style: normal;
   font-weight: 400;
   src: url(fonts/fa-regular-400.eot);
-  src: url(fonts/fa-regular-400.eot?#iefix) format("embedded-opentype"), url(fonts/fa-regular-400.woff2) format("woff2"), url(fonts/fa-regular-400.woff) format("woff"), url(fonts/fa-regular-400.ttf) format("truetype"), url(fonts/fa-regular-400.svg#fontawesome) format("svg");
+  src: url(fonts/fa-regular-400.eot?#iefix) format("embedded-opentype"),
+    url(fonts/fa-regular-400.woff2) format("woff2"),
+    url(fonts/fa-regular-400.woff) format("woff"),
+    url(fonts/fa-regular-400.ttf) format("truetype"),
+    url(fonts/fa-regular-400.svg#fontawesome) format("svg");
 }
 .far {
   font-weight: 400;
 }
 
 @font-face {
-  font-family: Font Awesome\ 5 Free;
+  font-family: Font Awesome\5 Free;
   font-style: normal;
   font-weight: 900;
   src: url(fonts/fa-solid-900.eot);
-  src: url(fonts/fa-solid-900.eot?#iefix) format("embedded-opentype"), url(fonts/fa-solid-900.woff2) format("woff2"), url(fonts/fa-solid-900.woff) format("woff"), url(fonts/fa-solid-900.ttf) format("truetype"), url(fonts/fa-solid-900.svg#fontawesome) format("svg");
+  src: url(fonts/fa-solid-900.eot?#iefix) format("embedded-opentype"),
+    url(fonts/fa-solid-900.woff2) format("woff2"),
+    url(fonts/fa-solid-900.woff) format("woff"),
+    url(fonts/fa-solid-900.ttf) format("truetype"),
+    url(fonts/fa-solid-900.svg#fontawesome) format("svg");
 }
-.fa, .far, .fas {
-  font-family: Font Awesome\ 5 Free;
+.fa,
+.far,
+.fas {
+  font-family: Font Awesome\5 Free;
 }
 
-.fa, .fas {
+.fa,
+.fas {
   font-weight: 900;
 }
 
@@ -4602,7 +4650,8 @@ template {
   padding: 0 12px;
   position: relative;
   text-align: center;
-  -webkit-transition: background-color 0.218s, border-color 0.218s, box-shadow 0.218s;
+  -webkit-transition: background-color 0.218s, border-color 0.218s,
+    box-shadow 0.218s;
   transition: background-color 0.218s, border-color 0.218s, box-shadow 0.218s;
   vertical-align: middle;
   white-space: nowrap;
@@ -4674,8 +4723,10 @@ template {
 }
 
 .gsi-material-button:not(:disabled):hover {
-  -webkit-box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+  -webkit-box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 1px 3px 1px rgba(60, 64, 67, 0.15);
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 1px 3px 1px rgba(60, 64, 67, 0.15);
 }
 
 .gsi-material-button:not(:disabled):hover .gsi-material-button-state {
@@ -4688,7 +4739,8 @@ html {
   height: 100vh;
 }
 
-html, body {
+html,
+body {
   margin: 0;
 }
 
@@ -4767,7 +4819,8 @@ a {
   color: #bdbfc0;
   cursor: default;
 }
-.Button:not(:disabled):hover, .Button:not(:disabled):focus {
+.Button:not(:disabled):hover,
+.Button:not(:disabled):focus {
   border-color: rgba(90, 67, 201, 0.5);
   color: #5a43c9;
 }
@@ -4781,12 +4834,13 @@ a {
   border-color: transparent;
   color: #fff;
 }
-.Button--active:not(:disabled):hover, .Button--active:not(:disabled):focus {
-  background: #3E3C41;
+.Button--active:not(:disabled):hover,
+.Button--active:not(:disabled):focus {
+  background: #3e3c41;
   border-color: transparent;
 }
 .Button--active:not(:disabled):active {
-  background: #2A282C;
+  background: #2a282c;
   color: #fff;
 }
 
@@ -5036,7 +5090,8 @@ a {
 }
 
 .Field-label {
-  font-weight: 500;
+  /* font-weight: 500; */
+  font-weight: bold;
   margin-bottom: 0.5rem;
 }
 

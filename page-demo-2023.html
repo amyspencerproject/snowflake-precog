@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text.css" href="./scss/_normalize.css" />
+    <link rel="stylesheet" href="./scss/main.css" />
+    <link rel="stylesheet" href="./scss/fonts.css" />
+    <link rel="stylesheet" href="./scss/fontawesome-all.css" />
+    <link rel="stylesheet" href="./scss/google.css" />
+  </head>
+  <body>
+    <div class="Precog">
+      <div class="Page">
+        <div class="PipelineCreatePage">
+          <div class="Container"><h1>Connect to Snowflake</h1></div>
+          <div class="Container">
+            <div class="SourceAdd">
+              <div class="Group">
+                <button class="Button" type="button">
+                  <i class="Icon fas fa-arrow-left"></i>Back
+                </button>
+              </div>
+              <div class="ConnectorForm">
+                <div class="Instructions">
+                  <h2>Snowflake Setup</h2>
+                  <ol class="InstructionList">
+                    <li class="InstructionList-item">
+                      <p>Log into your Snowflake account.</p>
+                    </li>
+                    <li class="InstructionList-item">
+                      <p>
+                        Create a new SQL Worksheet. Select Worksheets from the
+                        left-hand navigation bar and create a new worksheet with
+                        the blue plus icon on the top right.
+                      </p>
+                      <img
+                        style="width: 50%"
+                        src="./img/snowflake-new-worksheet.gif"
+                        alt=""
+                      />
+                      <p>
+                        If you are using the Classic Console view then select
+                        Worksheets from the toolbar at the top and create a new
+                        worksheet.
+                      </p>
+                    </li>
+                    <li class="InstructionList-item">
+                      <p>
+                        Paste the following SQL statements into the new
+                        worksheet. A unique and secure password has been
+                        generated in the 8th statement. This password is
+                        automatically filled into the password fields below for
+                        your convenience.
+                      </p>
+                      <div class="CodeBlock">
+                        <pre class="CodeBlock-code">
+CREATE OR REPLACE DATABASE precog;
+CREATE OR REPLACE ROLE precog;
+CREATE OR REPLACE SCHEMA precog;
+CREATE WAREHOUSE precog WITH WAREHOUSE_SIZE = 'XSMALL' WAREHOUSE_TYPE = 'STANDARD' AUTO_SUSPEND = 300 AUTO_RESUME = TRUE;
+GRANT ALL ON WAREHOUSE precog TO ROLE precog;
+GRANT ALL ON DATABASE precog TO ROLE precog;
+GRANT ALL ON ALL SCHEMAS IN DATABASE precog TO ROLE precog;
+CREATE OR REPLACE USER precog PASSWORD = "c9gL8glMfzf3zrVwKjyZgBPD" LOGIN_NAME = precog DISPLAY_NAME = precog MUST_CHANGE_PASSWORD = FALSE DEFAULT_WAREHOUSE = precog;
+GRANT ROLE precog TO USER precog;
+ALTER USER precog SET default_role=precog;
+GRANT USAGE ON ALL SCHEMAS IN DATABASE precog TO ROLE precog;
+GRANT USAGE ON FUTURE SCHEMAS IN DATABASE precog TO ROLE precog;
+GRANT ROLE precog TO ROLE sysadmin;</pre
+                        >
+                        <button
+                          class="Button CodeBlock-copyButton"
+                          type="button"
+                        >
+                          <i class="Icon fas fa-clipboard"></i>Copy
+                        </button>
+                      </div>
+                    </li>
+                    <li class="InstructionList-item">
+                      <p>
+                        Click on the Run All blue (down arrow) icon on top
+                        right.
+                      </p>
+                      <img
+                        style="width: 50%"
+                        src="./img/snowflake-runall.gif"
+                        alt=""
+                      />
+                      <p>
+                        If you are using the Classic Console the above
+                        directions will be slightly different. You will enable
+                        the
+                        <strong>All queries</strong> checkbox and click
+                        <strong>run</strong>
+                      </p>
+                    </li>
+                    <li class="InstructionList-item">
+                      You should now have a <strong>database</strong>,
+                      <strong>warehouse</strong>, and
+                      <strong>user</strong> named <strong>precog</strong> with
+                      the <strong>password</strong>
+                      <code>c9gL8glMfzf3zrVwKjyZgBPD</code>.
+                    </li>
+                    <li class="InstructionList-item">
+                      <p>
+                        Your Account Identifier is located within your Snowflake
+                        account URL. Click on the account info dropdown in the
+                        bottom left corner, next to the Snowflake Icon. Roll
+                        your mouse over the account location and copy your
+                        Account URL by clicking on the link icon at the top of
+                        the dialogue box. Paste the URL and remove the
+                        "https://" and ".snowflakecomputing.com" portions of the
+                        URL. For example, in the url of
+                        <strong>
+                          https://wib42113.snowflakecomputing.com</strong
+                        >
+                        the Account Identifier is <strong>wib42133</strong>.
+                      </p>
+                      <img
+                        style="width: 50%"
+                        src="./img/snowflake-url.gif"
+                        alt=""
+                      />
+                    </li>
+                  </ol>
+                </div>
+                <h2>Connect to Snowflake</h2>
+                <div class="KindForm">
+                  <label class="Field"
+                    ><div class="Field-label">Account Identifier</div>
+                    <div class="Field-description">
+                      Paste your Account Identifier from Step 6 here. Make sure
+                      you have removed the "https://" and
+                      ".snowflakecomputing.com" portions of the URL.
+                    </div>
+                    <input class="Input" type="text" placeholder="" /></label
+                  ><label class="Field"
+                    ><div class="Field-label">User</div>
+                    <div class="Field-description">
+                      The <strong>precog</strong> user was created in Snowflake
+                      when the SQL statements were run in Step 4.
+                    </div>
+                    <input class="Input" type="text" value="precog" /></label
+                  ><label class="Field"
+                    ><div class="Field-label">Password</div>
+                    <div class="Field-description">
+                      This password was created in Snowflake when the SQL
+                      statements were run in Step 4.
+                    </div>
+                    <input
+                      class="Input"
+                      type="password"
+                      placeholder=""
+                      value="<code>c9gL8glMfzf3zrVwKjyZgBPD</code>"
+                  /></label>
+                  <label class="Field"
+                    ><div class="Field-label">Database</div>
+                    <div class="Field-description">
+                      The <strong>precog</strong> database was created in
+                      Snowflake when the SQL statements were run in Step 4.
+                    </div>
+                    <input
+                      class="Input"
+                      type="text"
+                      placeholder=""
+                      value="precog" /></label
+                  ><label class="Field"
+                    ><div class="Field-label">Warehouse</div>
+                    <div class="Field-description">
+                      The <strong>precog</strong> warehouse was created in
+                      Snowflake when the SQL statements were run in Step 4.
+                    </div>
+                    <input
+                      class="Input"
+                      type="text"
+                      placeholder=""
+                      value="precog"
+                  /></label>
+
+                  <label class="Field"
+                    ><div class="Field-label">Role (Optional)</div>
+                    <div class="Field-description">
+                      Default role for the user unless specified otherwise.
+                    </div>
+                    <input class="Input" type="text" placeholder="" /></label
+                  ><label class="Field"
+                    ><div class="Field-label">Private Key</div>
+                    <div class="Field-description">
+                      If you need to use key pair authentication instead of
+                      basic authentication (user/password) then remove the user
+                      and password values from the field above. A Private Key
+                      can be generated by following these
+                      <a
+                        href="https://docs.snowflake.com/en/user-guide/key-pair-auth.html"
+                        target="_blank"
+                        >Snowflake directions</a
+                      >. If there is an issue please refer to this
+                      <a
+                        href="https://community.snowflake.com/s/article/Private-key-provided-is-invalid-or-not-supported-rsa-key-p8--data-isn-t-an-object-ID"
+                        target="_blank"
+                        >troubleshooting guide</a
+                      >.
+                    </div>
+                    <label class="Upload"
+                      ><input type="file" class="Upload-file" />
+                      <div class="Button Upload-fileName">
+                        <span class="Upload-fileNameIcon"
+                          ><i class="Icon fas fa-upload"></i></span
+                        >Select file
+                      </div></label
+                    ></label
+                  ><label class="Field"
+                    ><div class="Field-label">Private Key Passphrase</div>
+                    <div class="Field-description">
+                      If you used an Encrypted Private Key you will need a
+                      Private Key Passphrase. If you generated an Unencrypted
+                      Private Key or used basic authentication (user/password)
+                      then you can leave this field blank.
+                    </div>
+                    <input class="Input" type="password" placeholder=""
+                  /></label>
+                </div>
+                <div class="Group">
+                  <div class="ButtonGroup">
+                    <button class="Button" type="button">
+                      <i class="Icon fas fa-plus"></i>Create destination
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
