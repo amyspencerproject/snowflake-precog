@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" type="text.css" href="./scss/_normalize.css" />
+    <link rel="stylesheet" type="text.css" href="./scss/normalize.css" />
     <link rel="stylesheet" href="./scss/main.css" />
     <link rel="stylesheet" href="./scss/fonts.css" />
     <link rel="stylesheet" href="./scss/fontawesome-all.css" />
@@ -24,6 +24,19 @@
               </div>
               <div class="ConnectorForm">
                 <div class="Instructions">
+                  <h2>Key-pair authentication</h2>
+                  <p>
+                    Snowflake takes security very seriously. Beginning in 2025
+                    Snowflake users will be required to use multi-factor
+                    authentication or key-pair authentication.
+                  </p>
+                  <p>Take these steps to use key-pair authentication</p>
+                  <p>
+                    These instructions do not show up after a user has
+                    established their destination connection. So a customer who
+                    got an email asking them to add a KPA currently will have no
+                    way to access these instructions.
+                  </p>
                   <h2>Snowflake setup</h2>
                   <ol class="InstructionList">
                     <li class="InstructionList-item">
@@ -55,19 +68,19 @@
                       </p>
                       <div class="CodeBlock">
                         <pre class="CodeBlock-code">
-          CREATE OR REPLACE DATABASE precog;
-          CREATE OR REPLACE ROLE precog;
-          CREATE OR REPLACE SCHEMA precog;
-          CREATE WAREHOUSE precog WITH WAREHOUSE_SIZE = 'XSMALL' WAREHOUSE_TYPE = 'STANDARD' AUTO_SUSPEND = 300 AUTO_RESUME = TRUE;
-          GRANT ALL ON WAREHOUSE precog TO ROLE precog;
-          GRANT ALL ON DATABASE precog TO ROLE precog;
-          GRANT ALL ON ALL SCHEMAS IN DATABASE precog TO ROLE precog;
-          CREATE OR REPLACE USER precog PASSWORD = "LKBJYrG6fLgc3GC93lqBKlq8" LOGIN_NAME = precog DISPLAY_NAME = precog MUST_CHANGE_PASSWORD = FALSE DEFAULT_WAREHOUSE = precog;
-          GRANT ROLE precog TO USER precog;
-          ALTER USER precog SET default_role=precog;
-          GRANT USAGE ON ALL SCHEMAS IN DATABASE precog TO ROLE precog;
-          GRANT USAGE ON FUTURE SCHEMAS IN DATABASE precog TO ROLE precog;
-          GRANT ROLE precog TO ROLE sysadmin;</pre
+CREATE OR REPLACE DATABASE precog;
+        CREATE OR REPLACE ROLE precog;
+        CREATE OR REPLACE SCHEMA precog;
+        CREATE WAREHOUSE precog WITH WAREHOUSE_SIZE = 'XSMALL' WAREHOUSE_TYPE = 'STANDARD' AUTO_SUSPEND = 300 AUTO_RESUME = TRUE;
+        GRANT ALL ON WAREHOUSE precog TO ROLE precog;
+        GRANT ALL ON DATABASE precog TO ROLE precog;
+        GRANT ALL ON ALL SCHEMAS IN DATABASE precog TO ROLE precog;
+        CREATE OR REPLACE USER precog PASSWORD = "D3GKRJmZqjvjthVKLhkWy8rw" LOGIN_NAME = precog DISPLAY_NAME = precog MUST_CHANGE_PASSWORD = FALSE DEFAULT_WAREHOUSE = precog;
+        GRANT ROLE precog TO USER precog;
+        ALTER USER precog SET default_role=precog;
+        GRANT USAGE ON ALL SCHEMAS IN DATABASE precog TO ROLE precog;
+        GRANT USAGE ON FUTURE SCHEMAS IN DATABASE precog TO ROLE precog;
+        GRANT ROLE precog TO ROLE sysadmin;</pre
                         >
                         <button
                           class="Button CodeBlock-copyButton"
@@ -86,8 +99,7 @@
                       <p>
                         If you are using the Classic Console the above
                         directions will be slightly different. You will enable
-                        the
-                        <strong>“All queries”</strong> checkbox and click
+                        the <strong>“All queries”</strong> checkbox and click
                         <strong>“Run”</strong>.
                       </p>
                     </li>
@@ -96,7 +108,7 @@
                       <strong>Warehouse</strong>, and
                       <strong>User</strong> named <code>precog</code> with the
                       <strong>Password</strong>
-                      <code>LKBJYrG6fLgc3GC93lqBKlq8</code>. These values have
+                      <code>D3GKRJmZqjvjthVKLhkWy8rw</code>. These values have
                       all been automatically populated in the form below.
                     </li>
                     <li class="InstructionList-item">
@@ -121,24 +133,17 @@
                     <input class="Input" type="text" placeholder="" /></label
                   ><label class="Field"
                     ><div class="Field-label">Database</div>
-                    <input
-                      class="Input"
-                      type="text"
-                      placeholder="precog" /></label
+                    <input class="Input" type="text" placeholder="" /></label
                   ><label class="Field"
                     ><div class="Field-label">Warehouse</div>
-                    <input
-                      class="Input"
-                      type="text"
-                      placeholder="precog" /></label
+                    <input class="Input" type="text" placeholder="" /></label
                   ><label class="Field"
                     ><div class="Field-label">User</div>
-                    <input
-                      class="Input"
-                      type="text"
-                      placeholder="precog" /></label
+                    <input class="Input" type="text" placeholder="" /></label
                   ><label class="Field"
-                    ><div class="Field-label">Role (optional)</div>
+                    ><div class="Field-label">
+                      Role<span class="Field-labelOptional">(optional)</span>
+                    </div>
                     <div class="Field-description">
                       <p>
                         If left empty the default role for the user will be
@@ -157,9 +162,13 @@
                     <input
                       class="Input"
                       type="password"
-                      placeholder="LKBJYrG6fLgc3GC93lqBKlq8" /></label
+                      placeholder="" /></label
                   ><label class="Field"
-                    ><div class="Field-label">Private Key (optional)</div>
+                    ><div class="Field-label">
+                      Private Key<span class="Field-labelOptional"
+                        >(optional)</span
+                      >
+                    </div>
                     <div class="Field-description">
                       <p>
                         If the user has been set up with key-pair authentication
@@ -182,7 +191,9 @@
                     ></label
                   ><label class="Field"
                     ><div class="Field-label">
-                      Private Key Passphrase (optional)
+                      Private Key Passphrase<span class="Field-labelOptional"
+                        >(optional)</span
+                      >
                     </div>
                     <div class="Field-description">
                       <p>
