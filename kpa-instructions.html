@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Load Progress Mock-Up</title>
     <link rel="stylesheet" type="text.css" href="./scss/normalize.css" />
     <link rel="stylesheet" href="./scss/main.css" />
     <link rel="stylesheet" href="./scss/fonts.css" />
@@ -12,9 +12,23 @@
   </head>
   <body>
     <div class="Precog">
+      <div class="Header">
+        <div class="Logo">
+          <a href="#/pipelines"><img class="Logo-img" src="/img/logo.svg" /></a>
+        </div>
+        <div class="ButtonGroup">
+          <button class="Button">
+            <i class="Icon fas fa-user-circle"></i>My subscription</button
+          ><button class="Button">
+            <i class="Icon fas fa-sign-out-alt"></i>Log out
+          </button>
+        </div>
+      </div>
       <div class="Page">
         <div class="PipelineCreatePage">
-          <div class="Container"><h1>Connect to Snowflake</h1></div>
+          <div class="Container">
+            <h1>Connect to Snowflake with Key Pair Authentication</h1>
+          </div>
           <div class="Container">
             <div class="SourceAdd">
               <div class="Group">
@@ -24,23 +38,21 @@
               </div>
               <div class="ConnectorForm">
                 <div class="Instructions">
-                  <h2>Key-pair authentication</h2>
-                  <p>
-                    Beginning in 2025 Snowflake users will be required to use
-                    multi-factor authentication. For many customer this will
-                    also mean that key-pair authentication will be required for
-                    access to Snowflake service accounts.
-                  </p>
-                  <p>
-                    Take <a href="kpa-instructions.html">these steps</a> to use
-                    key-pair authentication
-                  </p>
-                  <p>
-                    These instructions do not show up after a user has
-                    established their destination connection. So a customer who
-                    got an email asking them to add a KPA currently will have no
-                    way to access these instructions.
-                  </p>
+                  <h2>Key Pair Authentication setup</h2>
+                  <ol class="InstructionList">
+                    <li class="InstructionList-item">
+                      <p>
+                        <strong
+                          >Open a terminal or CLI on your desktop
+                          computer.</strong
+                        >
+                        For Mac navigate to the Launch Pad or use the Spotlight
+                        search feature to find the “Terminal”. For Windows use
+                        the Start Menu search feature and enter “Command
+                        Prompt”.
+                      </p>
+                    </li>
+                  </ol>
                   <h2>Snowflake setup</h2>
                   <ol class="InstructionList">
                     <li class="InstructionList-item">
@@ -54,7 +66,7 @@
                       </p>
                       <img
                         class="InstructionsImage"
-                        src="img/new-worksheet.gif"
+                        src="img/snowflake/new-worksheet.gif"
                       />
                       <p>
                         If you are using the Classic Console view then select
@@ -73,18 +85,18 @@
                       <div class="CodeBlock">
                         <pre class="CodeBlock-code">
 CREATE OR REPLACE DATABASE precog;
-        CREATE OR REPLACE ROLE precog;
-        CREATE OR REPLACE SCHEMA precog;
-        CREATE WAREHOUSE precog WITH WAREHOUSE_SIZE = 'XSMALL' WAREHOUSE_TYPE = 'STANDARD' AUTO_SUSPEND = 300 AUTO_RESUME = TRUE;
-        GRANT ALL ON WAREHOUSE precog TO ROLE precog;
-        GRANT ALL ON DATABASE precog TO ROLE precog;
-        GRANT ALL ON ALL SCHEMAS IN DATABASE precog TO ROLE precog;
-        CREATE OR REPLACE USER precog PASSWORD = "D3GKRJmZqjvjthVKLhkWy8rw" LOGIN_NAME = precog DISPLAY_NAME = precog MUST_CHANGE_PASSWORD = FALSE DEFAULT_WAREHOUSE = precog;
-        GRANT ROLE precog TO USER precog;
-        ALTER USER precog SET default_role=precog;
-        GRANT USAGE ON ALL SCHEMAS IN DATABASE precog TO ROLE precog;
-        GRANT USAGE ON FUTURE SCHEMAS IN DATABASE precog TO ROLE precog;
-        GRANT ROLE precog TO ROLE sysadmin;</pre
+      CREATE OR REPLACE ROLE precog;
+      CREATE OR REPLACE SCHEMA precog;
+      CREATE WAREHOUSE precog WITH WAREHOUSE_SIZE = 'XSMALL' WAREHOUSE_TYPE = 'STANDARD' AUTO_SUSPEND = 300 AUTO_RESUME = TRUE;
+      GRANT ALL ON WAREHOUSE precog TO ROLE precog;
+      GRANT ALL ON DATABASE precog TO ROLE precog;
+      GRANT ALL ON ALL SCHEMAS IN DATABASE precog TO ROLE precog;
+      CREATE OR REPLACE USER precog PASSWORD = "CWfl6g3q6g2y4gL3rlphl9Lf" LOGIN_NAME = precog DISPLAY_NAME = precog MUST_CHANGE_PASSWORD = FALSE DEFAULT_WAREHOUSE = precog;
+      GRANT ROLE precog TO USER precog;
+      ALTER USER precog SET default_role=precog;
+      GRANT USAGE ON ALL SCHEMAS IN DATABASE precog TO ROLE precog;
+      GRANT USAGE ON FUTURE SCHEMAS IN DATABASE precog TO ROLE precog;
+      GRANT ROLE precog TO ROLE sysadmin;</pre
                         >
                         <button
                           class="Button CodeBlock-copyButton"
@@ -99,7 +111,10 @@ CREATE OR REPLACE DATABASE precog;
                         Click on the <strong>Run All</strong> option, down-arrow
                         icon in top right corner.
                       </p>
-                      <img class="InstructionsImage" src="img/run-all.gif" />
+                      <img
+                        class="InstructionsImage"
+                        src="img/snowflake/run-all.gif"
+                      />
                       <p>
                         If you are using the Classic Console the above
                         directions will be slightly different. You will enable
@@ -112,7 +127,7 @@ CREATE OR REPLACE DATABASE precog;
                       <strong>Warehouse</strong>, and
                       <strong>User</strong> named <code>precog</code> with the
                       <strong>Password</strong>
-                      <code>D3GKRJmZqjvjthVKLhkWy8rw</code>. These values have
+                      <code>CWfl6g3q6g2y4gL3rlphl9Lf</code>. These values have
                       all been automatically populated in the form below.
                     </li>
                     <li class="InstructionList-item">
@@ -123,7 +138,10 @@ CREATE OR REPLACE DATABASE precog;
                         your account URL by clicking on the link icon at the top
                         of the dialogue box. Paste the URL in the form below.
                       </p>
-                      <img class="InstructionsImage" src="img/copy-url.gif" />
+                      <img
+                        class="InstructionsImage"
+                        src="img/snowflake/url.gif"
+                      />
                     </li>
                   </ol>
                 </div>
