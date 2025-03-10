@@ -14,7 +14,9 @@
     <div class="Precog">
       <div class="Header">
         <div class="Logo">
-          <a href="#/pipelines"><img class="Logo-img" src="/img/logo.svg" /></a>
+          <a href="#/pipelines"
+            ><img class="Logo-img" src="img/precog-logo.png"
+          /></a>
         </div>
         <div class="ButtonGroup">
           <button class="Button">
@@ -32,9 +34,9 @@
           <div class="Container">
             <div class="SourceAdd">
               <div class="Group">
-                <button class="Button" type="button">
+                <a href="index.html" class="Button" type="button">
                   <i class="Icon fas fa-arrow-left"></i>Back
-                </button>
+                </a>
               </div>
               <div class="ConnectorForm">
                 <div class="Instructions">
@@ -43,13 +45,85 @@
                     <li class="InstructionList-item">
                       <p>
                         <strong
-                          >Open a terminal or CLI on your desktop
-                          computer.</strong
+                          >Open a terminal or command line interface (CLI) on
+                          your desktop computer.</strong
                         >
                         For Mac navigate to the Launch Pad or use the Spotlight
                         search feature to find the “Terminal”. For Windows use
                         the Start Menu search feature and enter “Command
-                        Prompt”.
+                        Prompt”. Type the command “pwd” short for “print working
+                        directory” to find what directory you are in. Take note
+                        of the directory as this will be where your key files
+                        are located.
+                      </p>
+                    </li>
+                    <li class="InstructionList-item">
+                      <p>
+                        <strong>Create a Private Key.</strong> You have a choice
+                        of creating an encrypted or unencrypted Private Key.
+                      </p>
+
+                      <p>
+                        <strong>Unencrypted Private Key.</strong> Run the
+                        following command in the CLI.
+                      </p>
+                      <p>
+                        <code
+                          >openssl genrsa 2048 | openssl pkcs8 -topk8 -inform
+                          PEM -out precog_key.p8 -nocrypt</code
+                        >
+                      </p>
+                      <p>
+                        The name of this Private Key file is precog_key.p8. You
+                        will need to upload this key file into the Precog
+                        configuration form below.
+                      </p>
+
+                      <p>
+                        <strong>Encrypted Private Key.</strong> Run the
+                        following command in the CLI.
+                      </p>
+                      <p>
+                        <code
+                          >openssl genrsa 2048 | openssl pkcs8 -topk8 -inform
+                          PEM -out encrypt_precog_key.p8</code
+                        >
+                      </p>
+                      <p>
+                        You will be prompted to “Enter Encryption Password”.
+                        Save this password in a secure place. If you lose or
+                        forget it you will not be able to retrieve it. Type in
+                        your password and then retype for verification.
+                      </p>
+                      <p>
+                        The name of this Private Key file is
+                        encrypt_precog_key.p8. You will need to upload this key
+                        file into the Precog configuration form below as well as
+                        providing the encrypted password.
+                      </p>
+                    </li>
+                    <li class="InstructionList-item">
+                      <p>
+                        <strong>Create a Public Key.</strong> In the CLI run the
+                        following command using the file name of your encrypted
+                        or unencrypted Private Key file, i.e.
+                        <code>precog_key.p8</code> or
+                        <code>encrypt_precog_key.p8</code>. This Public Key can
+                        be paired with either an encrypted or unencrypted
+                        Private Key.
+                      </p>
+                      <p>
+                        <code
+                          >openssl rsa -in precog_key.p8 -pubout -out
+                          precog_key.pub</code
+                        >
+                      </p>
+                      <p>
+                        The name of this Public Key file is precog_key.pub. Type
+                        <code>head precog_key.pub</code> to read your newly
+                        generated private key. The key is the alpha numeric text
+                        between the “BEGIN and END” lines. You will need to copy
+                        and paste the key into your Snowflake account.
                       </p>
                     </li>
                   </ol>
@@ -66,7 +140,7 @@
                       </p>
                       <img
                         class="InstructionsImage"
-                        src="img/snowflake/new-worksheet.gif"
+                        src="img/sql-worksheet.png"
                       />
                       <p>
                         If you are using the Classic Console view then select
@@ -84,14 +158,14 @@
                       </p>
                       <div class="CodeBlock">
                         <pre class="CodeBlock-code">
-CREATE OR REPLACE DATABASE precog;
+      CREATE OR REPLACE DATABASE precog;
       CREATE OR REPLACE ROLE precog;
       CREATE OR REPLACE SCHEMA precog;
       CREATE WAREHOUSE precog WITH WAREHOUSE_SIZE = 'XSMALL' WAREHOUSE_TYPE = 'STANDARD' AUTO_SUSPEND = 300 AUTO_RESUME = TRUE;
       GRANT ALL ON WAREHOUSE precog TO ROLE precog;
       GRANT ALL ON DATABASE precog TO ROLE precog;
       GRANT ALL ON ALL SCHEMAS IN DATABASE precog TO ROLE precog;
-      CREATE OR REPLACE USER precog PASSWORD = "CWfl6g3q6g2y4gL3rlphl9Lf" LOGIN_NAME = precog DISPLAY_NAME = precog MUST_CHANGE_PASSWORD = FALSE DEFAULT_WAREHOUSE = precog;
+      CREATE OR REPLACE USER precog LOGIN_NAME = precog DISPLAY_NAME = precog DEFAULT_WAREHOUSE = precog;
       GRANT ROLE precog TO USER precog;
       ALTER USER precog SET default_role=precog;
       GRANT USAGE ON ALL SCHEMAS IN DATABASE precog TO ROLE precog;
@@ -108,40 +182,52 @@ CREATE OR REPLACE DATABASE precog;
                     </li>
                     <li class="InstructionList-item">
                       <p>
+                        <strong
+                          >Assign your Public Key in your Snowflake
+                          account.</strong
+                        >
+                        Add the following statement to the new worksheet.
+                      </p>
+                      <code
+                        >ALTER USER precog SET RSA_PUBLIC_KEY=’<strong
+                          >Your public key here</strong
+                        >’;
+                      </code>
+                      <p>
+                        Copy your Public Key into the statement between single
+                        quotes. Do not include the “BEGIN and END” lines. For
+                        example, ALTER USER precog SET
+                        RSA_PUBLIC_KEY='MIIBIjANBgkqhkiG9w0B . . .';
+                      </p>
+                    </li>
+                    <li class="InstructionList-item">
+                      <p>
                         Click on the <strong>Run All</strong> option, down-arrow
                         icon in top right corner.
                       </p>
-                      <img
-                        class="InstructionsImage"
-                        src="img/snowflake/run-all.gif"
-                      />
+                      <img class="InstructionsImage" src="img/run-all.gif" />
                       <p>
                         If you are using the Classic Console the above
                         directions will be slightly different. You will enable
                         the <strong>“All queries”</strong> checkbox and click
                         <strong>“Run”</strong>.
                       </p>
-                    </li>
-                    <li class="InstructionList-item">
-                      You should now have a <strong>Database</strong>,
-                      <strong>Warehouse</strong>, and
-                      <strong>User</strong> named <code>precog</code> with the
-                      <strong>Password</strong>
-                      <code>CWfl6g3q6g2y4gL3rlphl9Lf</code>. These values have
-                      all been automatically populated in the form below.
+                      <p>
+                        You should now have a <strong>Database</strong>,
+                        <strong>Warehouse</strong>, and
+                        <strong>User</strong> named <code>precog</code>. These
+                        values have all been automatically populated in the form
+                        below.
+                      </p>
                     </li>
                     <li class="InstructionList-item">
                       <p>
                         Find your Snowflake <strong>Account URL</strong>. Click
                         on the account manager option in the bottom left
-                        navigation. Roll your mouse over the account and copy
-                        your account URL by clicking on the link icon at the top
-                        of the dialogue box. Paste the URL in the form below.
+                        navigation. Click on Account and then in the next panel
+                        click on "View account details" Copy your Account/Server
+                        URL and paste in the form below.
                       </p>
-                      <img
-                        class="InstructionsImage"
-                        src="img/snowflake/url.gif"
-                      />
                     </li>
                   </ol>
                 </div>
@@ -150,21 +236,21 @@ CREATE OR REPLACE DATABASE precog;
                   <label class="Field"
                     ><div class="Field-label">Account URL</div>
                     <div class="Field-description">
-                      <p>Paste your Snowflake account URL below.</p>
+                      <p>Paste your Snowflake Account/Server URL below.</p>
                     </div>
                     <input class="Input" type="text" placeholder="" /></label
                   ><label class="Field"
                     ><div class="Field-label">Database</div>
-                    <input class="Input" type="text" placeholder="" /></label
+                    <input class="Input" type="text" placeholder="precog" /></label
                   ><label class="Field"
                     ><div class="Field-label">Warehouse</div>
-                    <input class="Input" type="text" placeholder="" /></label
+                    <input class="Input" type="text" placeholder="precog" /></label
                   ><label class="Field"
                     ><div class="Field-label">User</div>
-                    <input class="Input" type="text" placeholder="" /></label
+                    <input class="Input" type="text" placeholder="precog" /></label
                   ><label class="Field"
                     ><div class="Field-label">
-                      Role<span class="Field-labelOptional">(optional)</span>
+                      Role <span class="Field-labelOptional">(optional)</span>
                     </div>
                     <div class="Field-description">
                       <p>
@@ -174,33 +260,12 @@ CREATE OR REPLACE DATABASE precog;
                     </div>
                     <input class="Input" type="text" placeholder="" /></label
                   ><label class="Field"
-                    ><div class="Field-label">Password</div>
-                    <div class="Field-description">
-                      <p>
-                        If key-pair authentication is used a password is not
-                        required.
-                      </p>
-                    </div>
-                    <input
-                      class="Input"
-                      type="password"
-                      placeholder="" /></label
-                  ><label class="Field"
                     ><div class="Field-label">
-                      Private Key<span class="Field-labelOptional"
-                        >(optional)</span
-                      >
+                      Private Key<span class="Field-labelOptional">
                     </div>
                     <div class="Field-description">
                       <p>
-                        If the user has been set up with key-pair authentication
-                        then upload the Private Key file. For more information
-                        refer to the
-                        <a
-                          href="https://docs.snowflake.com/en/user-guide/key-pair-auth.html"
-                          >Snowflake documentation</a
-                        >. Skip this if username/password-based authentication
-                        is being used.
+                        Upload the Private Key (encrypted or unencrypted) into your Precog account. 
                       </p>
                     </div>
                     <label class="Upload"
@@ -213,16 +278,11 @@ CREATE OR REPLACE DATABASE precog;
                     ></label
                   ><label class="Field"
                     ><div class="Field-label">
-                      Private Key Passphrase<span class="Field-labelOptional"
-                        >(optional)</span
-                      >
+                      Private Key Password
                     </div>
                     <div class="Field-description">
                       <p>
-                        Passphrase for the Private Key if the private key is
-                        encrypted. Leave empty if the Private Key is unencrypted
-                        or if username/password-based authentication is being
-                        used.
+                        Password for your encrypted Private Key. Leave empty if your Private Key is unencrypted.
                       </p>
                     </div>
                     <input class="Input" type="password" placeholder=""

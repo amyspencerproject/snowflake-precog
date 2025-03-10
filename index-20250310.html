@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text.css" href="./scss/normalize.css" />
+    <link rel="stylesheet" href="./scss/main.css" />
+    <link rel="stylesheet" href="./scss/fonts.css" />
+    <link rel="stylesheet" href="./scss/fontawesome-all.css" />
+    <link rel="stylesheet" href="./scss/google.css" />
+  </head>
+  <body>
+    <div class="Precog">
+      <div class="Header">
+        <div class="Logo">
+          <a href="#/pipelines"
+            ><img class="Logo-img" src="img/precog-logo.png"
+          /></a>
+        </div>
+        <div class="ButtonGroup">
+          <button class="Button">
+            <i class="Icon fas fa-user-circle"></i>My subscription</button
+          ><button class="Button">
+            <i class="Icon fas fa-sign-out-alt"></i>Log out
+          </button>
+        </div>
+      </div>
+      <div class="Page">
+        <div class="PipelineCreatePage">
+          <div class="Container"><h1>Connect to Snowflake</h1></div>
+          <div class="Container">
+            <div class="SourceAdd">
+              <div class="Group">
+                <button class="Button" type="button">
+                  <i class="Icon fas fa-arrow-left"></i>Back
+                </button>
+              </div>
+              <div class="ConnectorForm">
+                <div class="Instructions">
+                  <h2>Key-pair authentication</h2>
+                  <p>
+                    Beginning in 2025 Snowflake users will be required to use
+                    multi-factor authentication. For many customer this will
+                    also mean that key-pair authentication will be required for
+                    access to Snowflake service accounts.
+                  </p>
+                  <p>
+                    Take <a href="kpa-instructions.html">these steps</a> to use
+                    key-pair authentication
+                  </p>
+                  <p>
+                    These instructions do not show up after a user has
+                    established their destination connection. So a customer who
+                    got an email asking them to add a KPA currently will have no
+                    way to access these instructions.
+                  </p>
+                  <h2>Snowflake setup</h2>
+                  <ol class="InstructionList">
+                    <li class="InstructionList-item">
+                      Log into your Snowflake account.
+                    </li>
+                    <li class="InstructionList-item">
+                      <p>
+                        Create a new SQL Worksheet. Click on
+                        <strong>+ Create</strong> in the top left navigation and
+                        then choose <strong>SQL Worksheet</strong>.
+                      </p>
+                      <img
+                        class="InstructionsImage"
+                        src="img/new-worksheet.gif"
+                      />
+                      <p>
+                        If you are using the Classic Console view then select
+                        <strong>“Worksheets”</strong> from the toolbar at the
+                        top and create a new worksheet.
+                      </p>
+                    </li>
+                    <li class="InstructionList-item">
+                      <p>
+                        Paste the following SQL statements into the new
+                        worksheet. A unique and secure password has been
+                        generated in the 8th statement. This password is
+                        automatically populated into the password field below
+                        for your convenience.
+                      </p>
+                      <div class="CodeBlock">
+                        <pre class="CodeBlock-code">
+CREATE OR REPLACE DATABASE precog;
+        CREATE OR REPLACE ROLE precog;
+        CREATE OR REPLACE SCHEMA precog;
+        CREATE WAREHOUSE precog WITH WAREHOUSE_SIZE = 'XSMALL' WAREHOUSE_TYPE = 'STANDARD' AUTO_SUSPEND = 300 AUTO_RESUME = TRUE;
+        GRANT ALL ON WAREHOUSE precog TO ROLE precog;
+        GRANT ALL ON DATABASE precog TO ROLE precog;
+        GRANT ALL ON ALL SCHEMAS IN DATABASE precog TO ROLE precog;
+        CREATE OR REPLACE USER precog PASSWORD = "D3GKRJmZqjvjthVKLhkWy8rw" LOGIN_NAME = precog DISPLAY_NAME = precog MUST_CHANGE_PASSWORD = FALSE DEFAULT_WAREHOUSE = precog;
+        GRANT ROLE precog TO USER precog;
+        ALTER USER precog SET default_role=precog;
+        GRANT USAGE ON ALL SCHEMAS IN DATABASE precog TO ROLE precog;
+        GRANT USAGE ON FUTURE SCHEMAS IN DATABASE precog TO ROLE precog;
+        GRANT ROLE precog TO ROLE sysadmin;</pre
+                        >
+                        <button
+                          class="Button CodeBlock-copyButton"
+                          type="button"
+                        >
+                          <i class="Icon fas fa-clipboard"></i>Copy
+                        </button>
+                      </div>
+                    </li>
+                    <li class="InstructionList-item">
+                      <p>
+                        Click on the <strong>Run All</strong> option, down-arrow
+                        icon in top right corner.
+                      </p>
+                      <img class="InstructionsImage" src="img/run-all.gif" />
+                      <p>
+                        If you are using the Classic Console the above
+                        directions will be slightly different. You will enable
+                        the <strong>“All queries”</strong> checkbox and click
+                        <strong>“Run”</strong>.
+                      </p>
+                    </li>
+                    <li class="InstructionList-item">
+                      You should now have a <strong>Database</strong>,
+                      <strong>Warehouse</strong>, and
+                      <strong>User</strong> named <code>precog</code> with the
+                      <strong>Password</strong>
+                      <code>D3GKRJmZqjvjthVKLhkWy8rw</code>. These values have
+                      all been automatically populated in the form below.
+                    </li>
+                    <li class="InstructionList-item">
+                      <p>
+                        Find your Snowflake <strong>Account URL</strong>. Click
+                        on the account manager option in the bottom left
+                        navigation. Roll your mouse over the account and copy
+                        your account URL by clicking on the link icon at the top
+                        of the dialogue box. Paste the URL in the form below.
+                      </p>
+                      <img class="InstructionsImage" src="img/copy-url.gif" />
+                    </li>
+                  </ol>
+                </div>
+                <h2>Precog configuration</h2>
+                <div class="KindForm">
+                  <label class="Field"
+                    ><div class="Field-label">Account URL</div>
+                    <div class="Field-description">
+                      <p>Paste your Snowflake account URL below.</p>
+                    </div>
+                    <input class="Input" type="text" placeholder="" /></label
+                  ><label class="Field"
+                    ><div class="Field-label">Database</div>
+                    <input class="Input" type="text" placeholder="" /></label
+                  ><label class="Field"
+                    ><div class="Field-label">Warehouse</div>
+                    <input class="Input" type="text" placeholder="" /></label
+                  ><label class="Field"
+                    ><div class="Field-label">User</div>
+                    <input class="Input" type="text" placeholder="" /></label
+                  ><label class="Field"
+                    ><div class="Field-label">
+                      Role<span class="Field-labelOptional">(optional)</span>
+                    </div>
+                    <div class="Field-description">
+                      <p>
+                        If left empty the default role for the user will be
+                        used.
+                      </p>
+                    </div>
+                    <input class="Input" type="text" placeholder="" /></label
+                  ><label class="Field"
+                    ><div class="Field-label">Password</div>
+                    <div class="Field-description">
+                      <p>
+                        If key-pair authentication is used a password is not
+                        required.
+                      </p>
+                    </div>
+                    <input
+                      class="Input"
+                      type="password"
+                      placeholder="" /></label
+                  ><label class="Field"
+                    ><div class="Field-label">
+                      Private Key<span class="Field-labelOptional"
+                        >(optional)</span
+                      >
+                    </div>
+                    <div class="Field-description">
+                      <p>
+                        If the user has been set up with key-pair authentication
+                        then upload the Private Key file. For more information
+                        refer to the
+                        <a
+                          href="https://docs.snowflake.com/en/user-guide/key-pair-auth.html"
+                          >Snowflake documentation</a
+                        >. Skip this if username/password-based authentication
+                        is being used.
+                      </p>
+                    </div>
+                    <label class="Upload"
+                      ><input type="file" class="Upload-file" />
+                      <div class="Button Upload-fileName">
+                        <span class="Upload-fileNameIcon"
+                          ><i class="Icon fas fa-upload"></i></span
+                        >Select file
+                      </div></label
+                    ></label
+                  ><label class="Field"
+                    ><div class="Field-label">
+                      Private Key Passphrase<span class="Field-labelOptional"
+                        >(optional)</span
+                      >
+                    </div>
+                    <div class="Field-description">
+                      <p>
+                        Passphrase for the Private Key if the private key is
+                        encrypted. Leave empty if the Private Key is unencrypted
+                        or if username/password-based authentication is being
+                        used.
+                      </p>
+                    </div>
+                    <input class="Input" type="password" placeholder=""
+                  /></label>
+                </div>
+                <div class="Group">
+                  <div class="ButtonGroup">
+                    <button class="Button" type="button">
+                      <i class="Icon fas fa-plus"></i>Create destination
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
