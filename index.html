@@ -61,7 +61,7 @@
                     <li class="InstructionList-item">
                       <p>
                         <strong>Create a Private Key.</strong> You have a choice
-                        of creating an encrypted or unencrypted Private Key.
+                        of creating an encrypted <strong>or</strong> an unencrypted Private Key.
                       </p>
 
                       <p>
@@ -75,7 +75,7 @@
                         >
                       </p>
                       <p>
-                        The name of this Private Key file is precog_key.p8. You
+                        The name of this Private Key file is <strong>precog_key.p8</strong>. You
                         will need to upload this key file into the Precog
                         configuration form below.
                       </p>
@@ -98,9 +98,9 @@
                       </p>
                       <p>
                         The name of this Private Key file is
-                        encrypt_precog_key.p8. You will need to upload this key
+                        <strong>encrypt_precog_key.p8</strong>. You will need to upload this key
                         file into the Precog configuration form below as well as
-                        providing the encrypted password.
+                        providing the encryption password.
                       </p>
                     </li>
                     <li class="InstructionList-item">
@@ -120,7 +120,7 @@
                         >
                       </p>
                       <p>
-                        The name of this Public Key file is precog_key.pub. Type
+                        The name of this Public Key file is <strong>precog_key.pub</strong>. Type
                         <code>head precog_key.pub</code> to read your newly
                         generated private key. The key is the alpha numeric text
                         between the “BEGIN and END” lines. You will need to copy
@@ -151,11 +151,8 @@
                     </li>
                     <li class="InstructionList-item">
                       <p>
-                        Paste the following SQL statements into the new
-                        worksheet. A unique and secure password has been
-                        generated in the 8th statement. This password is
-                        automatically populated into the password field below
-                        for your convenience.
+                        Paste the following SQL statements into the
+                        worksheet. This will create a service user, database, and warehouse named “precog”.
                       </p>
                       <div class="CodeBlock">
                         <pre class="CodeBlock-code">
@@ -190,15 +187,15 @@
                         Add the following statement to the new worksheet.
                       </p>
                       <code
-                        >ALTER USER precog SET RSA_PUBLIC_KEY=’<strong
+                        >ALTER USER <strong>precog</strong> SET RSA_PUBLIC_KEY=’<strong
                           >Your public key here</strong
                         >’;
                       </code>
                       <p>
                         Copy your Public Key into the statement between single
                         quotes. Do not include the “BEGIN and END” lines. For
-                        example, ALTER USER precog SET
-                        RSA_PUBLIC_KEY='MIIBIjANBgkqhkiG9w0B . . .';
+                        example, ALTER USER <strong>precog</strong> SET
+                        RSA_PUBLIC_KEY='<strong>MIIBIjANBgkqhkiG9w0B . . .</strong>';
                       </p>
                     </li>
                     <li class="InstructionList-item">
@@ -216,7 +213,7 @@
                       <p>
                         You should now have a <strong>Database</strong>,
                         <strong>Warehouse</strong>, and
-                        <strong>User</strong> named <code>precog</code>. These
+                        <strong>User</strong> named "precog". These
                         values have all been automatically populated in the form
                         below.
                       </p>
@@ -283,7 +280,7 @@
                     </div>
                     <div class="Field-description">
                       <p>
-                        Password for your encrypted Private Key. Leave empty if your Private Key is unencrypted.
+                        Password for your encrypted Private Key. Leave empty if you chose to use an unencrypted Private Key.
                       </p>
                     </div>
                     <input class="Input" type="password" placeholder=""
