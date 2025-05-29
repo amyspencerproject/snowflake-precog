@@ -1,5 +1,7 @@
 {
-  "_id": { "$oid": "6384801da0585fa234e58f18" },
+  "_id": {
+    "$oid": "6384801da0585fa234e58f18"
+  },
   "matchers": [
     {
       "errorRegex": ".*Your free trial has ended and all of your virtual warehouses have been suspended.*",
@@ -43,10 +45,10 @@
     },
     {
       "errorRegex": ".*Certificate for .* doesn't match any of the subject alternative names.*",
-      "solution": "Your snowflake URL is incorrect. Go to https://app.snowflake.com and sign in. At the bottom left of the screen next to the Snowflake logo click the id. Hover over your account name in blue then click the link button which appears to copy your account URL. Go to your pipeline and edit your destination then paste this value into the account field.  Remove https:// from the start and .snowflakecomputing.com from the end then save your destination. See https://drive.google.com/file/d/1NVMFuRckAkEys7o903ulorHSBmu180U_/view?usp=sharing for a video explanation."
+      "solution": "Your Snowflake URL is incorrect. Sign into your Snowflake account. In the bottom left navigation click on the account manager option. This option may have a Snowflake icon or the user name, role, and initials. Roll your mouse over the account and copy your account URL by clicking on the link icon at the top of the dialogue box. Click on ‘Edit destination’ and paste the entire URL in the Account field. Save your destination edits. In your Pipeline click on the ‘Reload datasets’. Select the datasets, and then click on ‘Reload selected datasets’’. Click on the ‘Reload only’ option to connect to your Snowflake destination."
     },
     {
-      "solution": "Your snowflake URL is incorrect. Go to https://app.snowflake.com and sign in. At the bottom left of the screen next to the Snowflake logo click the id. Hover over your account name in blue then click the link button which appears to copy your account URL. Go to your pipeline and edit your destination then paste this value into the account field.  Remove https:// from the start and .snowflakecomputing.com from the end then save your destination. See https://drive.google.com/file/d/1NVMFuRckAkEys7o903ulorHSBmu180U_/view?usp=sharing for a video explanation.",
+      "solution": "Your Snowflake URL is incorrect. Sign into your Snowflake account. In the bottom left navigation click on the account manager option. This option may have a Snowflake icon or the user name, role, and initials. Roll your mouse over the account and copy your account URL by clicking on the link icon at the top of the dialogue box. Click on ‘Edit destination’ and paste the entire URL in the Account field. Save your destination edits. In your Pipeline click on the ‘Reload datasets’. Select the datasets, and then click on ‘Reload selected datasets’’. Click on the ‘Reload only’ option to connect to your Snowflake destination..",
       "errorRegex": ".*HTTP status=403.*"
     },
     {
@@ -68,14 +70,24 @@
     {
       "errorRegex": ".*Failed to initialize pool*",
       "solution": "The details you provided for your Snowflake destination are incorrect and causing a networking failure, please edit your destination correcting any details then reload."
+    },
+    {
+      "errorRegex": "(.*SQL execution internal error.*)",
+      "solution": "Encountered an internal error in Snowflake. This can either be a temporary Snowflake outage or a bug in Snowflake. Please try again. If the error persists please contact Snowflake support."
     }
   ],
   "kindId": {
     "name": "snowflake",
     "version": {
-      "major": { "$numberInt": "1" },
-      "minor": { "$numberInt": "0" },
-      "patch": { "$numberInt": "0" }
+      "major": {
+        "$numberInt": "1"
+      },
+      "minor": {
+        "$numberInt": "0"
+      },
+      "patch": {
+        "$numberInt": "0"
+      }
     },
     "type": "destination"
   },

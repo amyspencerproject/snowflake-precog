@@ -39,7 +39,7 @@
                 </a>
               </div>
               <div class="ConnectorForm">
-                <p>Snowflake will begin requiring Key Pair authentication in 2025. You will need to create two keys, one private and one public. The Private Key will be used in your Precog configuration and the Public key used in your Snowflake account. You can find more information about key pair authentication in the <a href="https://docs.snowflake.com/en/user-guide/key-pair-auth">Snowflake documentation</a>.</p>
+                <p>You will need to create two keys, one private and one public. The Private Key will be used in your Precog configuration, and the Public key will be used in your Snowflake account. You can find more information about key pair authentication in the <a href="https://docs.snowflake.com/en/user-guide/key-pair-auth">Snowflake documentation</a>.</p>
                 <div class="Instructions">
                   <h2>Key Pair Authentication setup</h2>
                   <ol class="InstructionList">
@@ -49,13 +49,7 @@
                           >Open a terminal or command line interface (CLI) on
                           your computer.</strong
                         >
-                        For Mac navigate to the Launch Pad or use the Spotlight
-                        search feature to find the “Terminal”. For Windows use
-                        the Start Menu search feature and enter “Command
-                        Prompt”. Type the command “pwd” short for “print working
-                        directory” to find what directory you are in. Take note
-                        of the directory as this will be where your key files
-                        are located.
+                        For macOS, navigate to the Launch Pad or use the Spotlight search feature to find the “Terminal”. For Windows, use the Start Menu search feature and enter “Command Prompt”. A CLI window will typically open in the root directory. Type the command “pwd” short for “print working directory” to find what directory you are in. Take note of the directory as this will be where your key files are located.
                       </p>
                     </li>
                     <li class="InstructionList-item">
@@ -93,7 +87,7 @@
                       <p>
                         You will be prompted to “Enter Encryption Password”.
                         Save this password in a secure place. If you lose or
-                        forget it you will not be able to retrieve it. Type in
+                        forget it, you will not be able to retrieve it. Type in
                         your password and then retype for verification.
                       </p>
                       <p>
@@ -131,7 +125,7 @@
                   <h2>Snowflake setup</h2>
                   <ol class="InstructionList">
                     <li class="InstructionList-item">
-                      Log into your Snowflake account.
+                      Log in to your Snowflake account.
                     </li>
                     <li class="InstructionList-item">
                       <p>
@@ -143,11 +137,11 @@
                         class="InstructionsImage"
                         src="img/sql-worksheet.png"
                       />
-                      <p>
+                      <!-- <p>
                         If you are using the Classic Console view then select
                         <strong>“Worksheets”</strong> from the toolbar at the
                         top and create a new worksheet.
-                      </p>
+                      </p> -->
                     </li>
                     <li class="InstructionList-item">
                       <p>
@@ -200,16 +194,16 @@
                     </li>
                     <li class="InstructionList-item">
                       <p>
-                        Click on the <strong>Run All</strong> option, down-arrow
-                        icon in top right corner.
+                        Click on the <strong>Run All</strong> option, the down-arrow
+                        icon in the top right corner.
                       </p>
                       <img class="InstructionsImage" src="img/run-all.gif" />
-                      <p>
+                      <!-- <p>
                         If you are using the Classic Console the above
                         directions will be slightly different. You will enable
                         the <strong>“All queries”</strong> checkbox and click
                         <strong>“Run”</strong>.
-                      </p>
+                      </p> -->
                       <p>
                         You should now have a <strong>Database</strong>,
                         <strong>Warehouse</strong>, and
